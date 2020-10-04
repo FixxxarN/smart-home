@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>smart_home_backend</RootNamespace>
+    <StartupObject>smart_home_backend.Program</StartupObject>
   </PropertyGroup>
 
 
