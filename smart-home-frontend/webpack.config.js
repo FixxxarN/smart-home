@@ -7,13 +7,25 @@ module.exports = {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
     },
+    devServer: {
+        contentBase: './dist',
+        proxy: {
+            '/api': {
+                target: 'http://localhost:80/'
+            }
+        }
+    },
     module: {
         rules: [
             {
-                test: /\.js$|jsx/,
+                test: /\.js$|jsx|.css/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
-            }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
         ]
     },
     plugins: [ 
