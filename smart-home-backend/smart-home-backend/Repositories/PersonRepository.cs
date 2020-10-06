@@ -27,14 +27,22 @@ namespace smart_home_backend.Repositories
         {
             try
             {
-                var personEntity = _mapper.Map<PersonEntity>(person);
-                personEntity.Id = Guid.NewGuid();
-                await _context.Person.AddAsync(personEntity);
-                await _context.SaveChangesAsync();
+                var p = await _context.Person.FirstOrDefaultAsync(p => p.Name == person.Name);
+                if(p == null)
+                {
+                    var personEntity = _mapper.Map<PersonEntity>(person);
+                    personEntity.Id = Guid.NewGuid();
+                    await _context.Person.AddAsync(personEntity);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (DbUpdateException e)
             {
-                _logger.LogError(e);
+                _logger.LogError(e.Message);
                 return false;
             }
             return true;
