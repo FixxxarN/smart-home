@@ -35,5 +35,11 @@ namespace smart_home_backend.Controllers
             })
             .ToArray();
         }
+
+        [HttpPost]
+        public string Post(string text)
+        {
+            return "Hello " + text;
+        }
     }
 }
