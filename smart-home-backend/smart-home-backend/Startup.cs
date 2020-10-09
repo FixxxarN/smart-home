@@ -13,8 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using smart_home_backend.Datasource.Context;
+using smart_home_backend.Hubs;
 using smart_home_backend.Mappers;
 using smart_home_backend.Repositories;
+using smart_home_backend.Services;
 
 namespace smart_home_backend
 {
@@ -35,11 +37,13 @@ namespace smart_home_backend
             {
                 options.AddPolicy(name: SpecificOrigins, builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000", "http://localhost:5000", "https://localhost:5001").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                    builder.WithOrigins("http://localhost:8080", "http://localhost:5000", "https://localhost:5001").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
                 });
             });
             services.AddControllers();
+            services.AddMvc();
             services.AddRazorPages();
+            services.AddSignalR();
             services.AddDbContext <Datasource.Context.smart_home_backend_context>(options => 
             options.UseSqlite("Data Source=SmartHome.db", db => {
                 db.MigrationsAssembly("smart-home-backend");
@@ -59,6 +63,7 @@ namespace smart_home_backend
         protected virtual void ConfigureRepositories(IServiceCollection services)
         {
             services.AddTransient<IPersonRepository, PersonRepository>();
+            services.AddTransient<IPersonService, PersonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +86,7 @@ namespace smart_home_backend
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<SmartHomeHub>("/hub");
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });

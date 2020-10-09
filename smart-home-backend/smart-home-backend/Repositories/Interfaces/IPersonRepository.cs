@@ -5,6 +5,7 @@ namespace smart_home_backend.Repositories
 {
     public interface IPersonRepository
     {
-        Task<bool> Create(PersonDto person);
+        Task<bool> GetPersonAndSendPersonData(string name);
+        Task<bool> Create(string name);
     }
 }

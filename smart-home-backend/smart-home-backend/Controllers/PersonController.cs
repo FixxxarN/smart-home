@@ -23,9 +23,10 @@ namespace smart_home_backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(PersonDto person)
+        public IActionResult Post(string name)
         {
-            if (_personRepository.Create(person).Result)
+            _personRepository.GetPersonAndSendPersonData(name);
+            if (_personRepository.Create(name).Result)
                 return StatusCode(200);
             else
                 return StatusCode(500);
