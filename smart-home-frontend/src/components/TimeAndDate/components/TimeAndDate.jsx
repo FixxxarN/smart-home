@@ -10,6 +10,19 @@ const StyledTimeAndDateContainer = styled.div`
 	padding: 10px;
 `;
 
+const StyledTimeText = styled.p`
+	font-family: Helvetica;
+	font-weight: 400;
+	font-size: 50px;
+	color: #fff;
+	margin: 0px;
+`;
+
+const StyledDateText = styled.p`
+	color: #505050;
+	margin: 0px;
+`;
+
 const GetCurrentTime = () => {
 	var date = new Date(parseInt(Date.now()));
 	// Use localization here in the future
@@ -46,8 +59,8 @@ const TimeAndDate = () => {
 
 	return (
 		<StyledTimeAndDateContainer>
-			<StyledText>{date}</StyledText>
-			<StyledText>{time}</StyledText>
+			<StyledTimeText>{time}</StyledTimeText>
+			<StyledDateText>{date}</StyledDateText>
 		</StyledTimeAndDateContainer>
 	);
 };

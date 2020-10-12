@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Weather } from "src/components/Weather";
 import { TimeAndDate } from "src/components/TimeAndDate";
 import { useHubConnection } from "src/hooks";
+import { Tasks } from "src/components/Tasks";
+import { Events } from "src/components/Events";
 
 const Home = () => {
 	const [name, setName] = useState("");
@@ -22,9 +24,11 @@ const Home = () => {
 
 	return (
 		<>
-			<p style={{ color: "#fff" }}>Name: {name}</p>
-			<Weather />
 			<TimeAndDate />
+			<Weather />
+			{/* <p style={{ color: "#fff" }}>Name: {name}</p> */}
+			<Tasks />
+			<Events />
 		</>
 	);
 };
