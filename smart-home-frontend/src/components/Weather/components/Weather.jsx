@@ -10,7 +10,7 @@ const StyledText = styled.p`
 
 const StyledWeatherContainer = styled.div`
 	display: flex;
-	padding: 10px;
+	padding: 20px;
 `;
 
 const Weather = () => {

@@ -4,6 +4,7 @@ import { TimeAndDate } from "src/components/TimeAndDate";
 import { useHubConnection } from "src/hooks";
 import { Tasks } from "src/components/Tasks";
 import { Events } from "src/components/Events";
+import { Quotes } from 'src/components/Quotes';
 
 const Home = () => {
 	const [name, setName] = useState("");
@@ -29,6 +30,7 @@ const Home = () => {
 			{/* <p style={{ color: "#fff" }}>Name: {name}</p> */}
 			<Tasks />
 			<Events />
+			<Quotes />
 		</>
 	);
 };

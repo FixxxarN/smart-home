@@ -7,7 +7,7 @@ const StyledText = styled.p`
 `;
 
 const StyledTimeAndDateContainer = styled.div`
-	padding: 10px;
+	padding: 20px;
 `;
 
 const StyledTimeText = styled.p`
